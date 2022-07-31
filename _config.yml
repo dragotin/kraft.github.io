@@ -4,6 +4,9 @@ tagline: User manuals for the open source project Kraft
 
 show_downloads: false
 
+github:
+  repository_url: https://github.com/dragotin/kraft
+
 author:
   name: The Kraft Project
   url: https://volle-kraft-voraus.de
