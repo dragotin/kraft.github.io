@@ -1,4 +1,4 @@
-Kraft manuals are available in different languages:
+[Kraft](https://volle-kraft-voraus.de) manuals are available in different languages:
 
 - Original [English Manual](manuals/kraft-en.html)
 - [German Manual](manuals/kraft-de.html)
