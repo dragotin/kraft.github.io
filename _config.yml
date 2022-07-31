@@ -1,7 +1,6 @@
 theme: jekyll-theme-cayman
 title: Kraft Manuals 
 tagline: User manuals for the open source project Kraft
-baseurl: https://dragotin.github.io/krafthandbook/
 
 show_downloads: false
 
