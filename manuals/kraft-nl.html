@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.18">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="Ronald Stroethoff, Klaas Freitag">
 <title>Het handboek van Kraft</title>
 <style>
@@ -664,6 +664,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <ul class="sectlevel2">
 <li><a href="#_materiaalcatalogus">Materiaalcatalogus</a></li>
 <li><a href="#_standard_templates">Standard Templates</a></li>
+<li><a href="#_kop_en_voettekst_sjablonen">Kop- en voettekst-sjablonen</a></li>
 </ul>
 </li>
 <li><a href="#Invoice">De creatie van documenten</a>
@@ -688,7 +689,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <ul class="sectlevel2">
 <li><a href="#_kraft_gemeenschappelijk_gebruiken">Kraft gemeenschappelijk gebruiken.</a></li>
 <li><a href="#_gebruik_van_xrechnung">Gebruik van XRechnung</a></li>
-<li><a href="#_changing_the_locale">Changing the Locale</a></li>
+<li><a href="#_de_taalregio_wijzigen">De taalregio wijzigen</a></li>
 </ul>
 </li>
 <li><a href="#Credits">Dankbetuigingen en licentie</a></li>
@@ -916,65 +917,56 @@ Lees hier <a href="https://github.com/dragotin/kraft/blob/master/manual/Readme.m
 </div>
 </div>
 <div class="sect3">
-<h4 id="_pdf_template">PDF Template</h4>
+<h4 id="_pdf_sjabloon">PDF sjabloon</h4>
 <div class="paragraph">
-<p>In the entry field Template File: the user can select a custom template for this specific document type.</p>
+<p>In invoerveld "Sjabloon bestand:" kan de gebruiker een eigen sjabloon opgeven voor dit specifieke documenttype.</p>
 </div>
 <div class="paragraph">
-<p>If the file extension of the template file is <code>.trml</code>, the ReportLab based document converter is used. If the file extension is <code>.gtmpl</code>, Kraft automatically uses the Weasyprint based converter.</p>
+<p>Als de bestand-extensie van het sjabloon-bestand is <code>.trml</code>, dan wordt de op ReportLab gebaseerde document converter gebruikt. Als de bestand-extensie is <code>.gtmpl</code>, dan gebruikt Kraft automatisch de op Weasyprint gebaseerde converter.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Noot</div>
-</td>
-<td class="content">
-The ReportLab system for PDF creation is deprecated in Kraft. Please, for new templates, always use Grantlee- and Weasyprint based templates.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>OPMERKING: Het ReportLab systeem voor de PDF creatie wordt in Kraft als verouderd gezien. Gebruikt voor nieuwe sjablonen altijd op Grantlee- en Weasyprint gebaseerde sjablonen.</p>
 </div>
 </blockquote>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_pdf_postprocessing">PDF Postprocessing</h4>
+<h4 id="_pdf_nabewerking">PDF nabewerking</h4>
 <div class="paragraph">
-<p>After Kraft has created the PDF document it is possible to merge the created PDF with static, customized PDFs created by the user. With that, it is easy to add a custom stationery with a logo to the resulting PDF ("Watermark").</p>
+<p>Nadat Kraft het PDF-document heeft gecreëerd is het mogelijk om de gecreëerde PDF samen te voegen met statische PDFs die die zijn gecreëerd en aangepast door de gebruiker. Hiermee is het makkelijk om eigen briefhoofd met een logo of een watermerk aan de resulterende PDF toe te voegen.</p>
 </div>
 <div class="paragraph">
-<p>The static PDFs should have the same page size as the generated documents. Keep in mind to use optimized images for logos etc. to not blow up the size of the result document.</p>
+<p>De statisch PDFs moeten dezelfde papiergrootte hebben als de gegenereerde documenten. Vergeet niet om voor logos en dergelijke geoptimaliseerde afbeeldingen te gebruiken zodat de grootte van het resulterende document niet wordt opgeblazen.</p>
 </div>
 <div class="paragraph">
 <p><span class="image"><img src="images/nl/pdfpostproc.png" alt="PDF Postprocessing" width="float?"right""></span></p>
 </div>
 <div class="paragraph">
-<p>The watermark options are:</p>
+<p>De opties voor het watermerk zijn:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>No Watermark</strong>: No watermark is created</p>
+<p><strong>Geen watermerk</strong>: Geen watermerk wordt gecreëerd</p>
 </li>
 <li>
-<p><strong>On first page</strong>: The first page of the watermark.pdf is merged with the first page of the result document</p>
+<p><strong>Op eerste pagina</strong>: De eerste pagina van de watermark-pdf wordt samengevoegd met de eerste pagina van het resulterende document</p>
 </li>
 <li>
-<p><strong>Watermark on all pages</strong>: Merges the first page of the watermark PDF to all pages of the result document</p>
+<p><strong>Watermerk op alle pagina&#8217;s</strong>: voegt de eerste pagina van de watermerk-PDF samen met alle pagina&#8217;s van het resulterende document</p>
 </li>
 <li>
-<p><strong>alternating</strong>: For this, the watermark PDF needs to have three pages. The first page is merged to the first page of the result document, the second and third page are alternated merge to subsequent pages.</p>
+<p><strong>Afwisselend</strong>: Hiervoor moet de watermerk-PDF drie pagina&#8217;s hebben. De eerste pagina wordt met de eerste pagina van het gecreëerde document samengevoegd, de tweede en derde pagina worden afwisselend met de volgende pagina&#8217;s samengevoegd.</p>
 </li>
 <li>
-<p><strong>different first and last page</strong>: the PDF needs to have three pages. The first page is merged to the first page of the result document, the third page to the last, and the second to all page between first and last page.</p>
+<p><strong>Afwijkende eerste en laatste pagina</strong>: het watermerk-PDF moet drie pagina&#8217;s hebben. De eerste pagina wordt met de eerste pagina van het gecreëerde document samengevoegd, de derde pagina wordt samengevoegd met de laatste pagina, en de tweede pagina met alle pagina&#8217;s tussen de eerste en de laatste pagina.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>If there is another static PDF document put into the entry field "Append PDF:", it is appended to the generated PDF. With that, Kraft will automatically add for example terms and conditions documents to the final document.</p>
+<p>Als een ander statisch PDF document is opgegeven in het vak "Voeg PDF toe:", dan wordt dit aan het eind van de gegenereerde PDF toegevoegd. Daarmee kan Kraft automatisch bijvoorbeeld een blad met de algemene voorwaarden toevoegen aan het uiteindelijke document.</p>
 </div>
 </div>
 </div>
@@ -1308,6 +1300,94 @@ The ReportLab system for PDF creation is deprecated in Kraft. Please, for new te
 <div class="paragraph">
 <p>Klik op <b class="button">OK</b> om het resultaat op te slaan of op <b class="button">Annuleren</b> om het resultaat te verwijderen.</p>
 </div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kop_en_voettekst_sjablonen">Kop- en voettekst-sjablonen</h3>
+<div class="paragraph">
+<p>Kraft heeft ook sjablonen voor de kop- voetteksten van documenten. Elk type document heeft zijn eigen set tekstsjablonen. To access them, open een document van een bepaald documenttype in de bewerkingsmode en gebruik de knop <b class="button">Sjabloon tonen</b> om de sjablonen zichtbaar te maken. In zowel de kop- als de voet-sectie worden de opgeslagen sjablonen zichtbaar.</p>
+</div>
+<div class="paragraph">
+<p>Direct onder het navigatie-paneel rechts van het venster ziet u een lijst met de namen van de beschikbare sjablonen. Als u op een van de namen in de lijst klikt dan krijgt u de tekst in het paneel eronder te zien.</p>
+</div>
+<div class="paragraph">
+<p>Daaronder zijn knoppen met de volgende functies van links naar rechts:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Voeg een sjabloon toe aan het document: Deze knop vervangt de tekst van het document met het geselecteerde sjabloon.</p>
+</li>
+<li>
+<p>Vervang tekst in document door sjabloon: Het geselecteerde sjabloon wordt op de huidige plaats van de cursor in het document toegevoegd.</p>
+</li>
+<li>
+<p>Nieuw sjabloon aanmaken: Opent een dialoogvenster om een compleet nieuw sjabloon voor het huidige doc type te creëren.</p>
+</li>
+<li>
+<p>Dit sjabloon bewerken: Opent het dialoogvenster om het huidige geselecteerde sjabloon te bewerken.</p>
+</li>
+<li>
+<p>Dit sjabloon verwijderen: Verwijderd het sjabloon permanent van de lijst met beschikbare sjablonen.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Noot</div>
+</td>
+<td class="content">
+Sjablonen met de naam <em>Standard</em> zijn de standaard sjablonen voor dat document type. Zijn worden automatisch toegevoegd als een document van dit type wordt gecreëerd.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_macros">Macro&#8217;s</h4>
+<div class="paragraph">
+<p>In zowel de kop-sjablonen als de voet-sjablonen kunnen macro&#8217;s aanwezig zijn die worden vervangen door uitgerekende waarden op het moment dat het document naar het eindresultaat wordt omgezet.</p>
+</div>
+<div class="paragraph">
+<p>De macro&#8217;s in de volgende lijst zijn beschikbaar:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DATE_ADD_DAYS(&lt;amount_days&gt;)</code>: Geeft de datum van het document plus het aantal dagen dat als parameter voor de macro is opgegeven.</p>
+</li>
+<li>
+<p><code>ITEM_COUNT_WITH_TAG(&lt;tag&gt;)</code>: Geeft het aantal items dat zijn getagged met de tag.</p>
+</li>
+<li>
+<p><code>NETTO_SUM_PER_TAG(&lt;tag&gt;)</code>: Geeft de netto som van alle items die zijn getagged met de opgegeven tag.</p>
+</li>
+<li>
+<p><code>BRUTTO_SUM_PER_TAG(&lt;tag&gt;)</code>: Geeft de brutto som van alle items die zijn getagged met de opgegeven tag.</p>
+</li>
+<li>
+<p><code>VAT_SUM_PER_TAG(&lt;tag&gt;)</code>: Geeft de pure belasting van alle items die zijn getagged met de opgegeven tag.</p>
+</li>
+<li>
+<p><code>IF_ANY_HAS_TAG(&lt;tag&gt;)</code> en <code>END_HAS_TAG</code>: Voegt de tekst tussen de macro&#8217;s toe alleen als er tenminste een item is met deze tag.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Als voorbeeld, deze voettekst-sjabloon kan worden gebruikt om automatisch zinvolle teksten te genereren:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Betaal deze rekening binnen drie weken na de datum van het document, wat is DATE_ADD_DAYS(21).
+
+IF_ANY_HAS_TAG(Material)
+Deze rekening vermeld het materiaal in ITEM_COUNT_WITH_TAG(Material) items. De netto waarde is NETTO_SUM_PER_TAG(Material),
+plus VAT_SUM_PER_TAG(Material) = BRUTTO_SUM_PER_TAG(Material).
+END_HAS_TAG</pre>
+</div>
+</div>
 <div class="paragraph">
 <p>We zijn nu klaar voor de eerste rekening.</p>
 </div>
@@ -1400,7 +1480,7 @@ The ReportLab system for PDF creation is deprecated in Kraft. Please, for new te
 <p>Klik op <b class="button">OK</b> om het resultaat op te slaan of op <b class="button">Annuleren</b> om het resultaat te verwijderen.</p>
 </div>
 <div class="paragraph">
-<p>We voegen nu handmatig een item toe door te klikken op de knop <b class="button">Item toevoegen…</b> waarna het venster [Item creëren] opent.</p>
+<p>We add now manually an item by clicking on the button <b class="button">Add item…</b> and the window [create new item] opens.</p>
 </div>
 <div class="paragraph">
 <p>Omdat we een speciale boom hebben geleverd, vullen we hier de naam van de speciale boom <code>liguster</code> in, in het veld invoegen vullen we het aantal van de speciale boom die we geleverd hebben in en de prijs daarvan.</p>
@@ -1525,7 +1605,7 @@ The ReportLab system for PDF creation is deprecated in Kraft. Please, for new te
 <p>Het venster sluit en we gaan terug naar het hoofdvenster.</p>
 </div>
 <div class="paragraph">
-<p>We voegen nu handmatig een item toe door te klikken op de knop `Item toevoegen&#8230;&#8203;'.</p>
+<p>We add now manually an item by clicking on the button <code>Add item…</code>.</p>
 </div>
 <div class="paragraph">
 <p>Het venster [Nieuw item aanmaken] opent.</p>
@@ -1537,7 +1617,7 @@ The ReportLab system for PDF creation is deprecated in Kraft. Please, for new te
 <p>Daarom gaan we een perenboom handmatig toevoegen.</p>
 </div>
 <div class="paragraph">
-<p>We klikken op de knop <b class="button">Item toevoegen…</b> waarna het venster [Item creëren] opent.</p>
+<p>We click on the button <b class="button">Add item…</b> and the window [create new item] opens.</p>
 </div>
 <div class="paragraph">
 <p>We vullen hier de naam van de boom <code>Perenboom</code> in, en in veld invoegen vullen we het aantal van de speciale bomen in die we kunnen leveren en de prijs daarvan.</p>
@@ -1674,34 +1754,34 @@ The ReportLab system for PDF creation is deprecated in Kraft. Please, for new te
 <div class="title">Noot</div>
 </td>
 <td class="content">
-Kraft still ships with the old ReportLab based converter, but that will be deprecated the future. The WeasyPrint based system is the future. It is a recommended to port existing templates.
+Bij Kraft wordt nog steeds de oude op ReportLab gebaseerde converter meegeleverd, maar dit zal in de toekomst veranderen. Het op de WeasyPrint gebaseerde systeem zal in de toekomst uitsluitend gebruikt worden. Het wordt aanbevolen om de bestaande sjablonen aan te passen.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>With <a href="https://weasyprint.org">WeasyPrint</a> Kraft uses a very powerful generator that makes it very easy to create highly customized documents with great quality.</p>
+<p>Kraft gebruikt met <a href="https://weasyprint.org">WeasyPrint</a> een zeer krachtige generator waarmee het erg makkelijk is om documenten te creëren die intensief naar naar wens aangepast kunnen worden en toch een goede kwaliteit hebben.</p>
 </div>
 <div class="paragraph">
-<p>WeasyPrint converts a html file to PDF. It is integrating a cascading stylesheet (CSS) file which has a huge impact on the PDF document&#8217;s look.</p>
+<p>WeasyPrint converteert een html-bestand naar PDF. Daarbij wordt een cascade stylesheet (CSS)-bestand geïntegreerd wat een grote invloed heeft op het uiterlijk van het PDF-document.</p>
 </div>
 <div class="paragraph">
-<p>The html- and CSS input file for WeasyPrint is built from the Kraft template file.</p>
+<p>De html- en CSS invoerbestanden voor WeasyPrint worden gecreëerd met de hulp van het Kraft sjabloonbestand.</p>
 </div>
 <div class="paragraph">
-<p>To enable the use of WeasyPrint for a document type in Kraft, simply create a weasyprint compatible template file and save it with the extension <strong>.gtmpl</strong>. Based on the file extension Kraft automatically uses WeasyPrint and the Grantlee templating engine for rendering.</p>
+<p>Om voor een document een op WeasyPrint gebaseerde sjabloon te gebruiken, creëert u eenvoudig een sjabloonbestand en slaat deze op met de extensie <strong>.gtmpl</strong>. Met deze bestand-extensie gebruikt Kraft automatisch WeasyPrint met daarbij Grantlee sjablonen voor de rendering.</p>
 </div>
 <div class="paragraph">
-<p>From version 0.95 on Kraft ships with an example template in the Grantlee- and WeasyPrint format. It can be found at <code>/usr/share/kraft/reports/invoice.gtmpl</code> or <a href="https://github.com/dragotin/kraft/blob/master/reports/invoice.gtmpl">online on Github</a>. An example CSS file <code>kraft.css</code> (<a href="https://github.com/dragotin/kraft/blob/master/reports/kraft.css">on Github</a>) is shipped as a good starting point for adoption.</p>
+<p>Vanaf versie 0.95 van Kraft vindt u een voorbeeld document in het Grantlee- en WeasyPrint formaat. U kunt het vinden in <code>/usr/share/kraft/reports/invoice.gtmpl</code> of <a href="https://github.com/dragotin/kraft/blob/master/reports/invoice.gtmpl">online op Github</a>. Een voorbeeld CSS-bestand <code>kraft.css</code> (<a href="https://github.com/dragotin/kraft/blob/master/reports/kraft.css">on Github</a>) wordt meegeleverd zodat u dit als startpunt kan gebruiken om het naar wens aan te passen.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_sjabloon_variabelen">Sjabloon variabelen</h4>
 <div class="paragraph">
-<p>To generate the PDF, Kraft has to transfer data from the document you have been working on to the input file that is processed to a PDF. For that, Kraft uses a text template in which Kraft replaces variables with the actual values.</p>
+<p>Om de PDF te genereren, moet Kraft de data van het document waaraan u in Kraft heeft gewerkt overbrengen naar het input-document dat met de hulp van Weasyprint wordt verwerkt tot een PDF. Daarvoor gebruikt Kraft een tekstsjabloon. Daarin vervangt Kraft variabelen door de daadwerkelijke waarden.</p>
 </div>
 <div class="paragraph">
-<p>For example, the tag <code>{{ doc.doctype }}</code> is replaced with the current document type during the generating process.</p>
+<p>De tag <code>{{ doc.doctype }}</code> wordt bijvoorbeeld tijdens het genereer proces vervangen door het huidige document type.</p>
 </div>
 <div class="paragraph">
 <p>De syntax is gebaseerd op de Django syntax voor sjablonen zoals het beschreven wordt in <a href="https://docs.djangoproject.com/en/3.1/topics/templates/">de documentatie</a>.</p>
@@ -1710,23 +1790,32 @@ Kraft still ships with the old ReportLab based converter, but that will be depre
 <div class="sect3">
 <h4 id="_epc_qr_code">EPC QR Code</h4>
 <div class="paragraph">
-<p>Kraft supports the <a href="https://en.wikipedia.org/wiki/EPC_QR_code">EPC QR Code</a>, also known as <em>Giro Code</em> with Weasyprint based PDF generation.</p>
+<p>Met de door Weasyprint gegenereerde PDF kan Kraft overweg met de <a href="https://nl.wikipedia.org/wiki/EPC_betaling_QR-Code">EPC QR Code</a> wat een implementatie is van een Europese standaard voor betalingen via de computer en mobiele apparaten.</p>
 </div>
 <div class="paragraph">
-<p>To use the giro code, the bank account information has to be added to own identity settings dialog in Kraft. The giro code is current only generated for documents with the document type <code>Rechnung</code>.</p>
+<p>In Duitsland is het ook bekend als <em>Giro Code</em>, in België als <em>Bancontact QR</em>, in Nederland als <em>iDEAL QR-code</em> en in Spanje is het ook bekend als <em>Bizum QR-code</em>.</p>
 </div>
 <div class="paragraph">
-<p>To include the generated EPC QR Code into the PDF document, the weasyprint template needs to contain a snippet like this:</p>
+<p>In Duitsland wordt het gebruikt door de <em>Giro Code</em> en in Nederland wordt het geaccepteerd door de officiële <a href="https://www.ideal.nl/consumenten/ideal-app/"><em>iDEAL QR-code</em></a> app.</p>
+</div>
+<div class="paragraph">
+<p>In België en Nederland wordt het geaccepteerd door de apps van vele banken, en in Oostenrijk en Finland wordt het geaccepteerd door de apps van alle banken.</p>
+</div>
+<div class="paragraph">
+<p>Om de EPC QR code op de afgedrukte rekening te gebruiken,moet de informatie over de bankrekening toegevoegd worden aan het dialoogvenster in Kraft over de eigen identiteit. De iDEAL QR-code wordt op dit moment alleen gegenereerd voor documenten van het document type <code>Rechnung</code>.</p>
+</div>
+<div class="paragraph">
+<p>Om de gegenereerde EPC QR Code op het PDF document te krijgen, moet aan het Weasyprint sjabloon een code zoals hieronder toegevoegd worden:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>    {%if doc.isInvoice and epcqrcode.valid %}
+<pre>    {%if doc.isInvoice and epcqrcode.valid %}
     &lt;p class="epcqrcode"&gt;
       &lt;img class="epc" src="file://{{ epcqrcode.svgfilename }}" alt="EPC QR Code" /&gt;
       Dieser QR Code ermöglicht einfaches, sicheres und schnelles Begleichen dieser Rechnung via GiroPay:
       Diesen Code mit dem Smartphone scannen und Überweisung per Banking App aufgeben.
     &lt;/p&gt;
-    {% endif %}</code></pre>
+    {% endif %}</pre>
 </div>
 </div>
 </div>
@@ -1940,7 +2029,7 @@ Verwijdert dit item uit het document.</pre>
 <p><strong>De database gezamenlijk gebruiken</strong></p>
 </div>
 <div class="paragraph">
-<p>De Database-server moet op de hoofdmachine geïnstalleerd zijn, of het moet op een gespecialiseerd apparaat zoals een NAS geïnstalleerd zijn. De snelheid van het netwerk beïnvloed de bruikbaarheid natuurlijk enorm.</p>
+<p>De database-server moet op de hoofdmachine geïnstalleerd zijn, of het moet op een gespecialiseerd apparaat zoals een NAS geïnstalleerd zijn. De snelheid van het netwerk beïnvloed de bruikbaarheid natuurlijk enorm.</p>
 </div>
 <div class="paragraph">
 <p>Howtos voor het gebruik van MySQL zijn op het internet te vinden.</p>
@@ -1956,8 +2045,8 @@ Verwijdert dit item uit het document.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[reporting]
-PdfOutputDir=/data/space/kraftdoc/pdf</code></pre>
+<pre>[reporting]
+PdfOutputDir=/data/space/kraftdoc/pdf</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2017,21 +2106,37 @@ Er zijn validators voor rekeningen in het XRechnung formaat op het internet te v
 </div>
 </div>
 <div class="sect2">
-<h3 id="_changing_the_locale">Changing the Locale</h3>
+<h3 id="_de_taalregio_wijzigen">De taalregio wijzigen</h3>
 <div class="paragraph">
-<p>If it is needed that Kraft runs under a different locale than the actual desktop environment, this can be achieved by setting the desired locale in the start file of Kraft.</p>
+<p>Als het nodig dat Kraft een andere taalregio (bijvoorbeeld voor een andere valuta) gebruikt dan die in de huidige desktop is ingesteld, dan kan dit worden bereikt door de gewenste taalregio in het opstart-bestand van Kraft in te stellen.</p>
 </div>
 <div class="paragraph">
-<p>On the linux desktop, apps are usually started through a so called <a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/">desktop file</a>. It contains the information how the Kraft binary is started if user clicks on the icon on the desktop or in the start menu.</p>
+<p>Bij een linux desktop, worden programma&#8217;s normaal gesproken opgestart met de hulp van een zogeheten <a href="https://specifications.freedesktop.org/desktop-entry-spec/latest/">desktop-bestand</a>. Hierin is informatie aanwezig over hoe het Kraft-programma wordt opgestart als de gebruiker klikt op het pictogram op de desktop of in het start menu.</p>
 </div>
 <div class="paragraph">
-<p>The desktop file can usually be found in <code>/usr/share/applications/de.volle-kraft-voraus.kraft.desktop</code>.</p>
+<p>Het desktop-bestand is meestal te vinden in <code>/usr/share/applications/de.volle-kraft-voraus.kraft.desktop</code>.</p>
 </div>
 <div class="paragraph">
-<p>It contains the line <code>` Exec=kraft %u </code>` which starts the application with the default locale.</p>
+<p>Daarin is de volgende regel aanwezig</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Exec=kraft %u</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Changing it to <code>` Exec=env LANG=de_DE.UTF-8 kraft %u </code>` would change that to run in the German locale for example, independent from the desktop environment location.</p>
+<p>wat het programma start met de standaard taalregio.</p>
+</div>
+<div class="paragraph">
+<p>Als u dit bijvoorbeeld wijzigt naar</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Exec=env LANG=de_DE.UTF-8 kraft %u</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>dan verandert dat naar de Duitse taalregio, onafhankelijk van de desktop environment locatie.</p>
 </div>
 </div>
 </div>
@@ -2040,17 +2145,17 @@ Er zijn validators voor rekeningen in het XRechnung formaat op het internet te v
 <h2 id="Credits">Dankbetuigingen en licentie</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Auteursrecht software en documentatie 2004-2022 Klaas Freitag</p>
+<p>Program and documentation copyright 2004–2023 Klaas Freitag</p>
 </div>
 <div class="paragraph">
-<p>Documentatie auteursrecht 2020 Ronald Stroethoff</p>
+<p>Documentatie auteursrecht 2020-2023 Ronald Stroethoff</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Laatste aanpassing 2022-12-28 22:28:01 +0100
+Laatste aanpassing 2023-10-22 21:08:10 +0200
 </div>
 </div>
 </body>

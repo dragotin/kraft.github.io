@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.18">
+<meta name="generator" content="Asciidoctor 2.0.20">
 <meta name="author" content="Ronald Stroethoff, Klaas Freitag">
 <title>Das Kraft Handbuch</title>
 <style>
@@ -664,6 +664,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <ul class="sectlevel2">
 <li><a href="#_material_catalog">Material Catalog</a></li>
 <li><a href="#_standard_templates">Standard Templates</a></li>
+<li><a href="#_header_and_footer_text_templates">Header- and Footer Text Templates</a></li>
 </ul>
 </li>
 <li><a href="#Invoice">Creating Documents</a>
@@ -1344,6 +1345,94 @@ in the invoice we see later only Plant tree, we will not see the parts dig hole,
 <div class="paragraph">
 <p>Click on [OK] for saving the result or on [Cancel] for discarding the result.</p>
 </div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_header_and_footer_text_templates">Header- and Footer Text Templates</h3>
+<div class="paragraph">
+<p>Kraft supports text templates also for the header- and footer-text of documents. Each document type has it&#8217;s own set of text templates. To access them, open a document of a certain document type in edit mode and use the <b class="button">show templates</b> to make the templates visible. In both the header- and footer-section the stored templates become visible.</p>
+</div>
+<div class="paragraph">
+<p>Directly under the navigation pane on the right side of the window is a list of the names of the available templates. Clicking on one of the names in the list displays the text in the pane below.</p>
+</div>
+<div class="paragraph">
+<p>Underneath there are buttons located with the following functions from left to right:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Add the template to the document: This button replaces the text of the document with the selected template.</p>
+</li>
+<li>
+<p>Insert the template to the document: The selected template is inserted to the current place of the cursor in the document.</p>
+</li>
+<li>
+<p>Create a new template: Opens a dialog to enter a complete new template for the current doc type.</p>
+</li>
+<li>
+<p>Edit the current template: Opens the dialog to edit the currently selected template.</p>
+</li>
+<li>
+<p>Delete the current template: Removes the template permanently from the list of available templates.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Anmerkung</div>
+</td>
+<td class="content">
+Templates with the name <em>Standard</em> are the default templates for the document type. They are inserted automatically if a document of this type is created.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_macros">Macros</h4>
+<div class="paragraph">
+<p>Both the header- and footer-templates can contain so called macros which are replaced with calculated values once the document is rendered to the final output format.</p>
+</div>
+<div class="paragraph">
+<p>The following list of macros are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DATE_ADD_DAYS(&lt;amount_days&gt;)</code>: Returns the date of the of document plus the number of days specified as parameter to the macro.</p>
+</li>
+<li>
+<p><code>ITEM_COUNT_WITH_TAG(&lt;tag&gt;)</code>: Returns the amount of items tagged with the tag.</p>
+</li>
+<li>
+<p><code>NETTO_SUM_PER_TAG(&lt;tag&gt;)</code>: Returns the netto sum of all items that are tagged with the named tag.</p>
+</li>
+<li>
+<p><code>BRUTTO_SUM_PER_TAG(&lt;tag&gt;)</code>: Returns the brutto sum of all items that are tagged with the named tag.</p>
+</li>
+<li>
+<p><code>VAT_SUM_PER_TAG(&lt;tag&gt;)</code>: Returns the pure tax of all items that are tagged with the named tag.</p>
+</li>
+<li>
+<p><code>IF_ANY_HAS_TAG(&lt;tag&gt;)</code> and <code>END_HAS_TAG</code>: Includes the text between the two macros only if there is at least one item that is tagged with the tag.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>As an example, this footer text template can be used to automatically generate useful texts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Please pay this invoice until three weeks after the date of the document, which is the DATE_ADD_DAYS(21).
+
+IF_ANY_HAS_TAG(Material)
+This invoice lists material in ITEM_COUNT_WITH_TAG(Material) items. The net value is NETTO_SUM_PER_TAG(Material),
+plus VAT_SUM_PER_TAG(Material) = BRUTTO_SUM_PER_TAG(Material).
+END_HAS_TAG</pre>
+</div>
+</div>
 <div class="paragraph">
 <p>We are now ready for the first invoice.</p>
 </div>
@@ -1755,23 +1844,32 @@ Kraft still ships with the old ReportLab based converter, but that will be depre
 <div class="sect3">
 <h4 id="_epc_qr_code">EPC QR Code</h4>
 <div class="paragraph">
-<p>Kraft supports the <a href="https://en.wikipedia.org/wiki/EPC_QR_code">EPC QR Code</a>, also known as <em>Giro Code</em> with Weasyprint based PDF generation.</p>
+<p>With Weasyprint based PDF generation Kraft supports the <a href="https://en.wikipedia.org/wiki/EPC_QR_code">EPC QR Code</a> which implements a European standard for payments by computer and mobile devices.</p>
 </div>
 <div class="paragraph">
-<p>To use the giro code, the bank account information has to be added to own identity settings dialog in Kraft. The giro code is current only generated for documents with the document type <code>Rechnung</code>.</p>
+<p>In Germany it is also known as <em>Giro Code</em>, in Belgium as <em>Bancontact QR</em>, in the Netherlands as <em>iDEAL QR-code</em> and in Spain it is also known as <em>Bizum QR-code</em>.</p>
 </div>
 <div class="paragraph">
-<p>To include the generated EPC QR Code into the PDF document, the weasyprint template needs to contain a snippet like this:</p>
+<p>In Germany it is accepted by the <em>Giro Code</em> and in Holland it is accepted by the official <a href="https://www.ideal.nl/consumenten/ideal-app/"><em>iDEAL QR-code</em></a> app.</p>
+</div>
+<div class="paragraph">
+<p>In Belgium and Holland it is accepted by the apps of many banks, and in Austria and Finland it is accepted by the apps of all banks.</p>
+</div>
+<div class="paragraph">
+<p>To use the EPC QR code on the invoice printout, the bank account information has to be added to own identity settings dialog in Kraft. The giro code is current only generated for documents with the document type <code>Rechnung</code>.</p>
+</div>
+<div class="paragraph">
+<p>To include the generated EPC QR Code into the PDF document, the Weasyprint template needs to contain a snippet like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>    {%if doc.isInvoice and epcqrcode.valid %}
+<pre>    {%if doc.isInvoice and epcqrcode.valid %}
     &lt;p class="epcqrcode"&gt;
       &lt;img class="epc" src="file://{{ epcqrcode.svgfilename }}" alt="EPC QR Code" /&gt;
       Dieser QR Code ermöglicht einfaches, sicheres und schnelles Begleichen dieser Rechnung via GiroPay:
       Diesen Code mit dem Smartphone scannen und Überweisung per Banking App aufgeben.
     &lt;/p&gt;
-    {% endif %}</code></pre>
+    {% endif %}</pre>
 </div>
 </div>
 </div>
@@ -2001,8 +2099,8 @@ Removes this item from document.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>[reporting]
-PdfOutputDir=/data/space/kraftdoc/pdf</code></pre>
+<pre>[reporting]
+PdfOutputDir=/data/space/kraftdoc/pdf</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2073,10 +2171,26 @@ There are validators for invoices in XRechnung format out there in the internet.
 <p>The desktop file can usually be found in <code>/usr/share/applications/de.volle-kraft-voraus.kraft.desktop</code>.</p>
 </div>
 <div class="paragraph">
-<p>It contains the line <code>` Exec=kraft %u </code>` which starts the application with the default locale.</p>
+<p>It contains the line</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Exec=kraft %u</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Changing it to <code>` Exec=env LANG=de_DE.UTF-8 kraft %u </code>` would change that to run in the German locale for example, independent from the desktop environment location.</p>
+<p>which starts the application with the default locale.</p>
+</div>
+<div class="paragraph">
+<p>Changing it to</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Exec=env LANG=de_DE.UTF-8 kraft %u</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>would change that to run in the German locale for example, independent from the desktop environment location.</p>
 </div>
 </div>
 </div>
@@ -2085,17 +2199,17 @@ There are validators for invoices in XRechnung format out there in the internet.
 <h2 id="Credits">Credits und Lizenz</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Program and documentation copyright 2004–2022 Klaas Freitag</p>
+<p>Program and documentation copyright 2004–2023 Klaas Freitag</p>
 </div>
 <div class="paragraph">
-<p>Dokumentation Copyright 2020 Ronald Stroethoff</p>
+<p>Documentation copyright 2020-2023 Ronald Stroethoff</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Zuletzt aktualisiert 2022-12-28 22:28:01 +0100
+Zuletzt aktualisiert 2023-10-22 21:08:09 +0200
 </div>
 </div>
 </body>
